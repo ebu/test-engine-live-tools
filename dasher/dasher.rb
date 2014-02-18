@@ -1,9 +1,9 @@
 class Dasher
   VARIANTS = ['out_hi', 'out_med', 'out_medlo', 'out_lo']
   INPUT_EXTENSION = "ts"
-  SEGMENT_DIR = '/var/www/dash/output'
+  SEGMENT_DIR = '/Users/tieleman/Documents/Code/EBU/video/output'
   OUTPUT_DIR = "#{SEGMENT_DIR}/segments"
-  MP4BOX = '/usr/local/bin/MP4Box'
+  MP4BOX = 'MP4Box'
   
   @last_seg = -1
   
@@ -30,15 +30,17 @@ class Dasher
         puts "Executing: #{command}"
         `#{command}`
       end
-      files = available_variants.map { |v| "#{OUTPUT_DIR}/#{v}_#{segment}.mp4" }
+      files = available_variants.map { |v| "#{OUTPUT_DIR}/#{v}_#{segment}.mp4:id=#{v}" }
       #files = ["#{OUTPUT_DIR}/#{segment}.mp4"]
-      if File.exists?(files.first)
+      #if File.exists?(files.first)
         Dir.chdir("#{OUTPUT_DIR}/final")
-        command = "#{MP4BOX} -dash-ctx dash-live.txt -dash 10000 -time-shift -1 -segment-name live -out live -url-template -dynamic #{files.join(' ')}"
+        command = "#{MP4BOX} -dash-ctx dash-live.txt -dash 10000 -url-template -time-shift -1 -segment-name 'live_$RepresentationID$_' -out live -profile live -dynamic #{files.join(' ')}"
         puts "Executing DASH: #{command}"
         `#{command}`
-        exit
-      end
+        `read -n 1 -s`
+        #`sleep 10`
+        #exit
+        #end
     end
   end
 end
