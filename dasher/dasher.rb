@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class Dasher
   VARIANTS = ['out_hi', 'out_med', 'out_medlo', 'out_audio']
   INPUT_EXTENSION = "ts"
@@ -58,7 +60,7 @@ class Dasher
     input_files          = available_variants.map { |v| "#{SEGMENT_DIR}/#{v}_#{segment}.#{INPUT_EXTENSION}" }
     raw_files            = available_variants.map { |v| "#{OUTPUT_DIR}/#{v}_#{segment}.mp4" }
     representation_files = available_variants.each_with_index.map { |v, i| "#{OUTPUT_DIR}/#{raw_files[i]}:id=#{v}" }
-    command = "#{MP4BOX} -dash-ctx ./dash-live.txt -dash 10000 -url-template -time-shift 1800 -segment-name 'live_$RepresentationID$_' -out #{OUTPUT_DIR}/live -dynamic #{representation_files.join(' ')}"
+    command = "#{MP4BOX} -dash-ctx #{OUTPUT_DIR}/dash-live.txt -dash 10000 -url-template -time-shift 1800 -segment-name 'live_$RepresentationID$_' -out #{OUTPUT_DIR}/live -dynamic #{representation_files.join(' ')}"
     puts "Executing DASH: #{command}"
     system command
     FileUtils.rm input_files
