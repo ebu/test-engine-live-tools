@@ -19,10 +19,12 @@ class Dasher
     `rm #{OUTPUT_DIR}/*`
     while true do
       index = @@last_seg + start.to_i + 1
-      available_segments = `ls -1 #{SEGMENT_DIR}/#{VARIANTS.first}_#{index}.#{INPUT_EXTENSION}`.split.map { |s| s.gsub("#{VARIANTS.first}_", '').gsub(".#{INPUT_EXTENSION}", '') }
-      # MPD the single segment if it matches
-      mpd(available_segments.first,start) if available_segments.any?
-      # sleep 1
+      file = "#{SEGMENT_DIR}/#{VARIANTS.first}_#{index}.#{INPUT_EXTENSION}"
+      if File.exists?(file)
+        available_segment = file.gsub("#{VARIANTS.first}_", '').gsub(".#{INPUT_EXTENSION}", '')
+        # MPD the single segment if it matches
+        mpd(available_segment,start)
+      end
     end
   end
   
@@ -58,7 +60,7 @@ class Dasher
     command = "#{MP4BOX} -dash-ctx ./dash-live.txt -dash 10000 -url-template -time-shift 1800 -segment-name 'live_$RepresentationID$_' -out #{OUTPUT_DIR}/live -dynamic #{representation_files.join(' ')}"
     puts "Executing DASH: #{command}"
     `#{command}`
-    `rm #{input_files.join(' ')}`
-    `rm #{raw_files.join(' ')}`
+    FileUtils.rm input_files
+    FileUtils.rm raw_files
   end
 end
