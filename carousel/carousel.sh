@@ -15,4 +15,4 @@ $DASH_VLC -I dummy -L $DASH_SOURCE_INPUT_FILE \
     -vb 2048k -s 800x450  $VIDEO_PRESET_OPTS $HLS_OPTS out_hi_.m3u8 \
     -vb 1024k -s 640x360  $VIDEO_PRESET_OPTS $HLS_OPTS out_med_.m3u8 \
     -vb 512k  -s 320x180  $VIDEO_PRESET_OPTS $HLS_OPTS out_medlo_.m3u8 \
-    -vn -ab 128k          $AUDIO_PRESET_OPTS $HLS_OPTS out_audio_.m3u8
+    -vn -ab 128k -f mpegts $AUDIO_PRESET_OPTS $HLS_OPTS out_audio_.m3u8
