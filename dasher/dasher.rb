@@ -50,7 +50,7 @@ class Dasher
   def create_intermediate_file(variant, segment)
     command = "#{MP4BOX} -add \"#{SEGMENT_DIR}/#{variant}_#{segment}.#{INPUT_EXTENSION}\" \"#{OUTPUT_DIR}/#{variant}_#{segment}.mp4\"" # 
     puts "Executing: #{command}"
-    `#{command}`
+    system command
   end
   
   def dash_intermediate_files(available_variants, segment)
@@ -59,7 +59,7 @@ class Dasher
     representation_files = available_variants.each_with_index.map { |v, i| "#{OUTPUT_DIR}/#{raw_files[i]}:id=#{v}" }
     command = "#{MP4BOX} -dash-ctx ./dash-live.txt -dash 10000 -url-template -time-shift 1800 -segment-name 'live_$RepresentationID$_' -out #{OUTPUT_DIR}/live -dynamic #{representation_files.join(' ')}"
     puts "Executing DASH: #{command}"
-    `#{command}`
+    system command
     FileUtils.rm input_files
     FileUtils.rm raw_files
   end
