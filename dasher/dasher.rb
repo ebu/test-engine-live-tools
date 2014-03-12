@@ -32,8 +32,9 @@ class Dasher
     # Check which variants are available
     available_variants = VARIANTS.select { |v| File.exists? "#{SEGMENT_DIR}/#{v}_#{segment}.#{INPUT_EXTENSION}" }
     # Is there also already a next segment? Than this one can be used as it is complete.
-    allowed_file = File.exists? "#{SEGMENT_DIR}/#{VARIANTS.first}_#{segment.to_i + 1}.#{INPUT_EXTENSION}"
-    if available_variants.length == VARIANTS.length && allowed_file && segment.to_i >= start.to_i && segment.to_i > @@last_seg
+    next_variants = VARIANTS.select { |v| File.exists? "#{SEGMENT_DIR}/#{v}_#{segment.to_i + 1}.#{INPUT_EXTENSION}" }
+    
+    if available_variants.length == VARIANTS.length && next_variants.length == VARIANTS.length && segment.to_i >= start.to_i && segment.to_i > @@last_seg
       puts "\e[31mProcessing segment #{segment}\e[0m"
       # Create intermediate files
       available_variants.each { |v| create_intermediate_file(v,segment) }
