@@ -12,8 +12,8 @@ job_carousel.on('close', function(code, signal) {
   job_dasher.kill(); // Send SIGTERM to other job
 })
 
-job_dasher.stderr.setEncoding('utf8');
-job_dasher.stderr.on('data', function(data) {
+job_dasher.stdout.setEncoding('utf8');
+job_dasher.stdout.on('data', function(data) {
   console.log(data.toString());
 })
 job_dasher.on('close', function(code, signal) {

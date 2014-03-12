@@ -43,7 +43,7 @@ class Dasher
       
       @@last_seg = segment.to_i
     else
-      #puts "\e[31mSkipping segment #{segment}\e[0m"
+      puts "\e[31mSkipping segment #{segment} for now.\e[0m"
     end
   end
   
