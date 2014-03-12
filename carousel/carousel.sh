@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 cd $DASH_SEGMENT_INPUT_DIR
 
