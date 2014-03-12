@@ -1,7 +1,7 @@
 var child_process = require('child_process');
 
-job_carousel = child_process.spawn('/home/bram/src/ebu-tools/carousel/carousel.sh')
-job_dasher = child_process.spawn('/home/bram/src/ebu-tools/dasher/runner.rb')
+var job_carousel = child_process.spawn('/home/bram/src/ebu-tools/carousel/carousel.sh')
+var job_dasher   = child_process.spawn('/home/bram/src/ebu-tools/dasher/runner.rb')
 
 job_carousel.stdout.setEncoding('utf8');
 job_carousel.stdout.on('data', function(data) {
