@@ -59,7 +59,7 @@ class Dasher
     raw_files            = available_variants.map { |v| "#{OUTPUT_DIR}/#{v}_#{segment}.mp4" }
     representation_files = available_variants.each_with_index.map { |v, i| "#{raw_files[i]}:id=#{v}" }
     Dir.chdir(OUTPUT_DIR)
-    command = "#{MP4BOX} -dash-ctx ./dash-live.txt -dash 10000 -url-template -time-shift -1 -segment-name 'live_$RepresentationID$_' -out live -dynamic #{representation_files.join(' ')}"
+    command = "#{MP4BOX} -dash-ctx ./dash-live.txt -dash 10000 -url-template -time-shift 1800 -segment-name 'live_$RepresentationID$_' -out live -dynamic #{representation_files.join(' ')}"
     puts "Executing DASH: #{command}"
     `#{command}`
     `rm #{input_files.join(' ')}`
