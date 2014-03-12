@@ -21,7 +21,7 @@ class Dasher
       index = @@last_seg + start.to_i + 1
       file = "#{SEGMENT_DIR}/#{VARIANTS.first}_#{index}.#{INPUT_EXTENSION}"
       if File.exists?(file)
-        available_segment = file.gsub("#{VARIANTS.first}_", '').gsub(".#{INPUT_EXTENSION}", '')
+        available_segment = file.gsub("#{SEGMENT_DIR}/", '').gsub("#{VARIANTS.first}_", '').gsub(".#{INPUT_EXTENSION}", '')
         # MPD the single segment if it matches
         mpd(available_segment,start)
       end
