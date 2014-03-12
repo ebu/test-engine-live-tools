@@ -1,5 +1,5 @@
 class Dasher
-  VARIANTS = ['out_hi', 'out_med', 'out_medlo', 'out_lo', 'out_audio']
+  VARIANTS = ['out_hd', 'out_hi', 'out_med', 'out_medlo', 'out_lo', 'out_audio']
   INPUT_EXTENSION = "ts"
 
   # These settings can be overridden by using ENV variables
