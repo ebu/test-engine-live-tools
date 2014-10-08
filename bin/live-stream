@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-
-var minimist = require('minimist');
+var minimist             = require('minimist');
 var liveStreamController = require('../lib/live-stream-controller');
-var argv = minimist(process.argv.slice(2), { boolean: ['h'] });
 
 function printUsage() {
-  console.log('usage: live-stream [-h] [-c config_file] input');
+  console.log('usage: live-stream [-h] [-c config_file] input_file');
   console.log('  -h:             show this help message');
   console.log('  -c config_file: specify a config file to use, must be a valid JSON file');
   console.log('  input_file:     the input file to stream, must be a MPEG-2 transport stream');
 }
+
+var argv = minimist(process.argv.slice(2), { boolean: ['h'] });
 
 if (argv._.length !== 1 || argv.h === true) {
   printUsage();
