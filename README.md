@@ -30,6 +30,16 @@ in the sources. The `input_file` is mandatory and it is required that this is cu
 easy looping of the source material. The contents of the file can be either MPEG-2 video/audio or H264/AAC, or most likely
 anything else that ffmpeg can extract from a MPEG-2 TS container.
 
+## Using different sources
+
+Instead of using a looped MPEG-2 TS file directly, it is also possible to read from other input sources. By specifying an input
+source using a URL with a protocol, this will be directly passed to ffmpeg to read from another source. This way you can
+for example ingest video using UDP transport. Example usage:
+
+    # bin/live-stream udp://192.168.0.10:1234
+
+In theory any transport protocol supported by your version of ffmpeg is allowed.
+
 # Configuration
 
 The default configuration generates one video representation and one audio representation. See `lib/config.js` for details.
