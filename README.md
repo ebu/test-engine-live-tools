@@ -33,7 +33,7 @@ anything else that ffmpeg can extract from a MPEG-2 TS container.
 ## Using different sources
 
 Instead of using a looped MPEG-2 TS file directly, it is also possible to read from other input sources. By specifying an input
-source using a URL with a protocol, this will be directly passed to ffmpeg to read from another source. This way you can
+source using a URL with a protocol, this will be directly passed to ffmpeg to read from that source. This way you can
 for example ingest video using UDP transport. Example usage:
 
     # bin/live-stream udp://192.168.0.10:1234
