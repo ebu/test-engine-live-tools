@@ -4,15 +4,17 @@ Small tools and scripts for the EBU test engine platform. These allow for DASH-i
 
 # Installation
 
-Clone the code and install the dependencies using npm. Be sure to provide your own MP4Box and ffmpeg binaries, they are not
-included.
+The easiest way to install is to use the `npm` package. This will give you the latest released version and install all
+dependencies (except ffmpeg and MP4Box, you need to provide these yourself):
+
+    # npm install test-engine-live-tools
+
+If you wish to use a different version from the Git repository you have to clone the code and install the dependencies using npm.
+Also, be sure to provide your own MP4Box and ffmpeg binaries, they are not included.
 
     # git clone https://github.com/ebu/test-engine-live-tools.git
     # cd test-engine-live-tools
     # npm install
-
-In the future this package will be provided as a npm package.
-
 
 # Usage
 
