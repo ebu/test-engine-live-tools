@@ -1,7 +1,7 @@
 {
   "name": "test-engine-live-tools",
   "description": "NodeJS tools to live stream an MPEG-TS using MPEG-DASH",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": ["transcoding", "ffmpeg", "video", "mpeg", "dash", "MP4Box"],
   "repository": {
     "type": "git",
@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "mkdirp": "~0.5.0",
-    "async": "~0.9.0",
     "minimist": "~1.1.0"
   },
   "licenses": [{
